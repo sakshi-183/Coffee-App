@@ -1,0 +1,63 @@
+<html>
+    <head>
+        <title> Coffee App</title>
+        <style>
+            *{font-size:50px; font-family:Arial;}
+            body{background-color:lightpink;}
+            body{background-image:url("https://thumbs.dreamstime.com/b/coffee-latte-art-38068319.jpg")}
+        </style>
+
+        <script>
+          let order =() => {
+                event.preventDefault();
+                let name=document.getElementById("name");
+                let small=document.getElementById("small");
+                let medium=document.getElementById("medium");
+                let large=document.getElementById("large");
+                let ans=document.getElementById("ans");
+
+                if(name.value.trim().length==0)
+                {
+                    alert("name is empty");
+                    name.focus();
+                    name.value="";
+                    ans.innerHTML="";
+                    retrun;
+                }
+                if(! name.value.match(/^[A-z]+$/))
+                {
+                    alert("invalid name");
+                    name.focus();
+                    name.value="";
+                    ans.innerHTML="";
+                    return;
+                }
+                let cs="";
+                if(small.checked)      cs="Small";
+                else if(medium.checked)  cs="Medium";
+                else                     cs="large";
+
+                let msg="Name = " + name.value + " Coffee Size = " + cs;
+                ans.innerHTML=msg;
+            }
+        </script>
+    </head>
+    <body>
+       
+        <center>
+            <h1>Coffee Wallah</h1>
+            <form onsubmit="return order()" >
+                <input type="text" placeholder="enter  name" id="name"/>
+                <br/><br/>
+                <input type="radio" name="s" value="small" id="small">Small
+                <input type="radio" name="s" value="medium" id="medium">Medium
+                <input type="radio" name="s" value="large"  id="large" checked=true>Large
+            <br/><br/>
+            <input type="submit" value="Place Order"/>
+
+        </form>
+        <h1 id="ans"></h1>
+
+        </center>
+    </body>
+</html>
